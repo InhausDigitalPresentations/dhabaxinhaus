@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>The Road to Dhaba</title>
+<link rel="stylesheet" href="css/style.css?v=27">
+<link rel="stylesheet" href="css/deck.css?v=27">
+</head>
+<body>
+
+<div id="sky"></div>
+
+<!-- FAR: ghost type, slow parallax -->
+<div class="layer" id="far"></div>
+
+<!-- AIR: flying things -->
+<div class="layer" id="air">
+  <img class="flyer" data-src="assets/ill/tiger.webp" data-x="16.5" data-y="3" data-h="22" alt="">
+  <img class="flyer" data-src="assets/ill/redchili.webp" data-x="38" data-y="5" data-h="10" alt="">
+</div>
+
+<!-- MID: the deck, 1:1 with the road -->
+<div class="layer" id="world"><div id="track"></div></div>
+
+<!-- ROAD -->
+<div id="road">
+  <div class="kerb"></div>
+  <div class="asphalt"><div class="dash"></div></div>
+</div>
+
+<!-- CAR (screen-anchored; world moves beneath it) -->
+<div id="puffs"></div>
+<div id="car" aria-label="Dhaba taxi — click to honk" role="button" tabindex="0">
+  <div class="shadow"></div>
+  <div class="chassis"><img class="carimg" src="assets/car/car.webp?v=3" alt=""></div>
+  <div class="wheel w-front"><img src="assets/car/wheel.webp?v=3" alt=""><i></i></div>
+  <div class="wheel w-rear"><img src="assets/car/wheel.webp?v=3" alt=""><i></i></div>
+</div>
+
+<!-- FINALE: scrubbed by the last stretch of scroll -->
+<div id="finale">
+  <div class="fn-stage">
+    <div class="fn-rest"><img class="fn-ill" src="assets/finale/restaurant.webp" alt=""><div class="fn-sign"><img class="fn-logo" src="assets/brand/logo-beige.svg" alt="DHABA Indian Kitchen"></div></div>
+  </div>
+  <div class="fn-copy"><h2 class="fn-t1">Every restaurant opens.</h2><h2 class="fn-t2">Dhaba arrives.</h2></div>
+</div>
+
+<!-- FOREGROUND: things that pass close to camera -->
+<div class="layer" id="fore">
+  <img data-src="assets/ill/chili-sign.webp" data-x="5.2" style="height:30vh" alt="">
+  <img data-src="assets/ill/redchili.webp" data-x="14" style="height:22vh" alt="">
+  <img data-src="assets/ill/chili-sign.webp" data-x="24" style="height:24vh;transform:rotate(-18deg)" alt="">
+  <img data-src="assets/ill/redchili.webp" data-x="33" style="height:20vh;transform:rotate(12deg)" alt="">
+</div>
+
+<!-- UI -->
+<header class="ui top">
+  <div class="lockup"><img class="lk-dhaba" src="assets/brand/logo-beige.svg" alt="DHABA"><span>×</span><img class="lk-inhaus" src="assets/brand/inhaus-cream.png" alt="INHAUS"></div>
+  <div id="map"><div class="line"></div><div id="map-taxi"></div></div>
+  <span id="counter"><b>00</b> / 39 &nbsp;·&nbsp; <em>The Road to Dhaba</em></span>
+</header>
+<footer class="ui bottom">
+  <span></span>
+  <span class="keys">Scroll · ← → · Click the taxi</span>
+</footer>
+
+<script src="js/photo-meta.js?v=27"></script>
+<script src="js/deck.js?v=27"></script>
+<script src="js/road.js?v=27"></script>
+</body>
+</html>
