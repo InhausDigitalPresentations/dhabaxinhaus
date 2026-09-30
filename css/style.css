@@ -1,0 +1,116 @@
+@font-face{font-family:"Publish";src:url(../fonts/PublishGothicCondensed-Bold.woff2) format("woff2");font-weight:700;font-display:swap}
+@font-face{font-family:"Publish";src:url(../fonts/PublishGothicCondensed-Demibold.woff2) format("woff2");font-weight:600;font-display:swap}
+@font-face{font-family:"Satoshi";src:url(../fonts/Satoshi-Regular.otf) format("opentype");font-weight:400;font-display:swap}
+@font-face{font-family:"Satoshi";src:url(../fonts/Satoshi-Medium.otf) format("opentype");font-weight:500;font-display:swap}
+@font-face{font-family:"Satoshi";src:url(../fonts/Satoshi-Bold.otf) format("opentype");font-weight:700;font-display:swap}
+
+:root{
+  --blue:#142196; --cream:#F5EDDE; --orange:#FA682C; --green:#47984B; --teal:#002B35;
+  --bg:#142196; --ink:#F5EDDE;
+  --road-h:22vh;            /* road band height */
+  --horizon:calc(var(--road-h) - 1px);
+  --car-h:min(36vh, 44vw);  /* taxi height incl. cargo */
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{height:100%;overflow:hidden;background:var(--blue);overscroll-behavior:none}
+body{font-family:"Satoshi",system-ui,sans-serif;color:var(--ink);-webkit-font-smoothing:antialiased;touch-action:none;user-select:none}
+img{display:block;-webkit-user-drag:none}
+
+#sky{position:fixed;inset:0;background:var(--bg)}
+
+.layer{position:fixed;inset:0;will-change:transform;pointer-events:none}
+#track{position:absolute;top:0;left:0;height:100%;display:flex}
+.stop{position:relative;height:100%;flex:none;color:var(--ink)}
+
+/* ---------- type ---------- */
+.display{font-family:"Publish",Impact,sans-serif;font-weight:700;font-size:clamp(56px,11vh,150px);line-height:.9;letter-spacing:-.01em;text-transform:none}
+.eyebrow{font-weight:700;font-size:13px;letter-spacing:.16em;text-transform:uppercase;margin-bottom:2.2vh}
+.body{font-size:clamp(17px,2.3vh,24px);line-height:1.35;max-width:34ch;margin-top:3.5vh;font-weight:500}
+.ph{display:inline-block;margin-top:2.4vh;font-size:11px;letter-spacing:.14em;text-transform:uppercase;border:1px dashed currentColor;padding:6px 10px;opacity:.7}
+.kicker{font-weight:700;font-size:14px;letter-spacing:.24em;text-transform:uppercase;margin-top:3vh;text-align:center}
+
+.logo-mask{background:currentColor;-webkit-mask:var(--logo) center/contain no-repeat;mask:var(--logo) center/contain no-repeat}
+.logo-mask.big{width:min(48vw,72vh);aspect-ratio:538.52/227.04}
+.logo-mask.mid{width:52%;aspect-ratio:538.52/227.04}
+.logo-mask.tiny{width:74px;aspect-ratio:538.52/227.04}
+
+/* ---------- panels ---------- */
+.t-start{position:absolute;left:50vw;top:15vh;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center}
+.hint{position:absolute;right:6vw;top:52vh;font-weight:700;font-size:13px;letter-spacing:.2em;text-transform:uppercase;display:flex;align-items:center;gap:14px}
+.hint .arrow{width:56px;height:2px;background:currentColor;position:relative;animation:nudge 1.6s ease-in-out infinite}
+.hint .arrow:after{content:"";position:absolute;right:-1px;top:-5px;width:10px;height:10px;border-top:2px solid currentColor;border-right:2px solid currentColor;transform:rotate(45deg)}
+@keyframes nudge{50%{transform:translateX(10px)}}
+
+.t-letter{position:absolute;left:44vw;top:12vh}
+.t-route{position:absolute;left:40vw;top:12vh}
+.route{list-style:none;font-family:"Publish",Impact,sans-serif;font-weight:700;font-size:clamp(40px,8vh,104px);line-height:.98}
+.route li{display:flex;align-items:baseline;gap:.35em}
+.route b{font-family:"Satoshi";font-size:14px;letter-spacing:.14em;transform:translateY(-.25em)}
+
+.t-city{position:absolute;left:40vw;top:12vh;z-index:2}
+.ph-photo{position:absolute;background:var(--cream);padding:8px 8px 30px;box-shadow:0 18px 40px -18px rgba(0,20,40,.45);will-change:transform}
+.ph-photo img{width:100%;height:100%;object-fit:cover}
+.ph-photo.p1{left:74vw;top:8vh;height:44vh;aspect-ratio:2/3;rotate:-3deg}
+.ph-photo.p2{left:93vw;top:20vh;height:34vh;aspect-ratio:3/2;rotate:2.5deg;z-index:1}
+.ph-photo.p3{left:118vw;top:6vh;height:36vh;aspect-ratio:2/3;rotate:-1.5deg}
+
+.roadside{position:absolute;bottom:calc(var(--horizon) - 1vh);width:auto;filter:drop-shadow(0 10px 10px rgba(0,0,0,.18))}
+.oncoming{position:absolute;bottom:calc(var(--road-h) - 6vh);height:30vh;will-change:transform;z-index:3}
+
+/* Indian highway milestone */
+.milestone{position:absolute;bottom:calc(var(--horizon) - 2px);width:7.2vh;min-width:56px;height:12vh;min-height:92px;background:#fbf8f1;border-radius:3.6vh 3.6vh 0 0;display:flex;flex-direction:column;align-items:center;justify-content:flex-end;padding-bottom:1.4vh;color:var(--teal);box-shadow:inset -6px 0 0 rgba(0,0,0,.06),0 6px 0 -2px rgba(0,0,0,.12);overflow:hidden}
+.milestone .cap{position:absolute;top:0;left:0;right:0;height:42%;background:var(--orange)}
+.milestone b{font-family:"Publish";font-size:3.2vh;line-height:1}
+.milestone em{font-style:normal;font-weight:700;font-size:1vh;min-font-size:8px;letter-spacing:.08em;text-transform:uppercase;white-space:nowrap}
+
+.t-end{position:absolute;left:50vw;top:8vh;transform:translateX(-50%);width:min(42vh,34vw);aspect-ratio:1;display:grid;place-items:center}
+.frame-mask{position:absolute;inset:0;background:currentColor;-webkit-mask:url(../assets/brand/frame-white.svg) center/contain no-repeat;mask:url(../assets/brand/frame-white.svg) center/contain no-repeat}
+
+/* ---------- ghost type (far layer) ---------- */
+.ghost{position:absolute;top:6vh;font-family:"Publish",Impact,sans-serif;font-weight:700;font-size:52vh;line-height:.8;white-space:nowrap;color:var(--ink);opacity:0;will-change:opacity;letter-spacing:-.02em}
+
+/* ---------- air / fore ---------- */
+.flyer{position:absolute;width:auto;will-change:transform}
+#fore img{position:absolute;bottom:-9vh;width:auto;filter:blur(3px) drop-shadow(0 20px 20px rgba(0,0,0,.25))}
+
+/* ---------- road ---------- */
+#road{position:fixed;left:0;right:0;bottom:0;height:var(--road-h);pointer-events:none}
+#road .kerb{height:1.6vh;background:repeating-linear-gradient(90deg,var(--cream) 0 80px,var(--orange) 80px 160px);background-size:160px 100%}
+#road .asphalt{position:absolute;inset:1.6vh 0 0 0;background:var(--teal)}
+#road .dash{position:absolute;left:0;right:0;top:48%;height:.9vh;min-height:5px;background:repeating-linear-gradient(90deg,#F5EDDE 0 90px,transparent 90px 200px);background-size:200px 100%;opacity:.85}
+
+/* ---------- car ---------- */
+#car{position:fixed;left:0;bottom:calc(var(--road-h) * .3);height:var(--car-h);width:calc(var(--car-h) * 2400 / 2033);will-change:transform;cursor:pointer;outline:none;z-index:5}
+#car > *{position:absolute}
+#car .chassis{left:0;top:0;width:100%;height:100%;will-change:transform}
+#car .carimg{position:absolute;left:0;top:0;width:100%;height:100%;max-width:none}
+#car .wheel{border-radius:50%;overflow:hidden}
+#car .wheel img{position:absolute;left:0;top:0;width:100%;height:100%;max-width:none;will-change:transform}
+#car .wheel i{position:absolute;inset:0;border-radius:50%;background:radial-gradient(circle at 42% 34%,rgba(255,236,210,.10),rgba(0,0,0,0) 45%),radial-gradient(circle,rgba(0,0,0,0) 62%,rgba(10,6,3,.35) 100%),linear-gradient(to bottom,rgba(0,0,0,0) 40%,rgba(10,6,3,.30));pointer-events:none}
+#car .shadow{left:6%;right:4%;bottom:-2.5%;height:7%;border-radius:50%;background:radial-gradient(closest-side,rgba(0,15,20,.55),rgba(0,15,20,0));will-change:transform}
+
+#puffs{position:fixed;inset:0;pointer-events:none;z-index:4}
+.puff{position:absolute;left:0;top:0;width:64px;height:64px;margin:-32px 0 0 -32px;border-radius:50%;background:radial-gradient(circle,rgba(245,237,222,.6) 0%,rgba(235,228,214,.3) 38%,rgba(235,228,214,0) 70%);will-change:transform,opacity}
+
+/* ---------- UI ---------- */
+.ui{position:fixed;left:0;right:0;display:flex;justify-content:space-between;align-items:center;padding:22px 28px;font-size:11px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--ink);z-index:10;pointer-events:none}
+.ui.top{top:0}
+.ui.bottom{bottom:0;color:var(--cream);gap:28px;padding-bottom:18px}
+#map{position:absolute;left:50%;top:26px;width:min(360px,40vw);transform:translateX(-50%);height:14px}
+#map .line{position:absolute;left:0;right:0;top:6px;height:2px;background:currentColor;opacity:.3}
+#map .tick{position:absolute;top:2px;width:2px;height:10px;background:currentColor;opacity:.7}
+#map-taxi{position:absolute;top:1px;width:22px;height:12px;margin-left:-11px;background:#FFC20E;border-radius:4px 7px 3px 3px;box-shadow:0 0 0 2px var(--teal)}
+.keys{opacity:.7}
+
+@media (max-width:700px){
+  :root{--road-h:20vh;--car-h:min(24vh,50vw)}
+  .ui.top > span{display:none}
+  #map{width:44vw;left:auto;right:18px;transform:none}
+  .t-letter,.t-route,.t-city{left:12vw;top:11vh;right:8vw}
+  .t-start{top:18vh}
+  .hint{right:auto;left:12vw;top:44vh}
+  .ph-photo.p1{left:70vw}.ph-photo.p2{left:96vw}.ph-photo.p3{left:124vw}
+  .keys{display:none}
+  .ui{padding:16px 18px}
+}
+@media (prefers-reduced-motion:reduce){.hint .arrow{animation:none}}
